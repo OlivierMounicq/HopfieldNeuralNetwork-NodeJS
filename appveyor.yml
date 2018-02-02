@@ -11,6 +11,7 @@ install:
   # install modules
   - npm install
   - npm install --save-dev jasmine
+  - ./node_modules/.bin/jasmine init
 
 
 # Post-install test scripts.
