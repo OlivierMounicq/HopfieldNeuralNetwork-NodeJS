@@ -20,7 +20,8 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  - npm test
+  # npm test
+  - ./node_modules/.bin/jasmine
 
 # Don't actually build.
 build: off
