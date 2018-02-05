@@ -12,6 +12,7 @@ install:
   - npm install
   - npm install --save-dev jasmine
   - ./node_modules/.bin/jasmine init
+  - npm install --save-dev jasmine-xml-reporter
 
 
 # Post-install test scripts.
@@ -21,7 +22,10 @@ test_script:
   - npm --version
   # run tests
   # npm test
-  - ./node_modules/.bin/jasmine
+  #- ./node_modules/.bin/jasmine
+  - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --output=./testresults
+  - ps: $wc = New-Object 'System.Net.WebClient'
+  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml))
 
 # Don't actually build.
 build: off
