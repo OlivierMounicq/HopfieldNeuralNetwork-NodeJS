@@ -23,7 +23,7 @@ test_script:
   # run tests
   # npm test
   #- ./node_modules/.bin/jasmine
-  - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --output=./testresults
+  - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --output=.\testresults
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\testresults/results.xml))
 
