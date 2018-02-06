@@ -4,7 +4,7 @@ environment:
     # node.js
     - nodejs_version: "9"
   COVERALLS_REPO_TOKEN:
-    secure: kYz4NKVvFSFDG4VhIx5uYg==
+    secure: 77iTlGmCE6TK9dPwYG0jZeejC9JNKHRZPZVD/1Fsh9w+4d7LDyUOFdRXM0DR1tGc
 
 # Install scripts. (runs after repo cloning)
 install:
