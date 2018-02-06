@@ -15,6 +15,7 @@ install:
   - npm install --save-dev jasmine
   - ./node_modules/.bin/jasmine init
   - npm install --save-dev jasmine-xml-reporter
+  - npm install --save-dev coveralls
 
 
 # Post-install test scripts.
@@ -29,6 +30,9 @@ test_script:
   #- node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml))
+
+after_test:
+  - node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
 
 # Don't actually build.
 build: off
