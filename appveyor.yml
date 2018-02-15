@@ -15,8 +15,9 @@ install:
   - npm install --save-dev jasmine
   - ./node_modules/.bin/jasmine init
   - npm install --save-dev jasmine-xml-reporter
-  - npm install --save-dev coveralls
-
+  #- npm install --save-dev coveralls
+  - npm install --save-dev karma
+  - npm install --save-dev karma-coverage
 
 # Post-install test scripts.
 test_script:
@@ -32,7 +33,8 @@ test_script:
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml))
 
 after_test:
-  - node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
-
+  #- node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
+  - ./node_modules/.bin/istanbul cover --report lcov ./node_modules/.bin/jasmine
+  
 # Don't actually build.
 build: off
