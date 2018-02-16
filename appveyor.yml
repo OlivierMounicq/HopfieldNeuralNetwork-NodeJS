@@ -32,7 +32,7 @@ test_script:
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml))
   - ps: $temp = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml)
-  - ps: Write-Host $temp
+  - ps: Write-Host "$temp"
 
 after_test:
   #- node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
