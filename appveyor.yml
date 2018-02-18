@@ -18,6 +18,7 @@ install:
   #- npm install --save-dev coveralls
   - npm install --save-dev karma
   - npm install --save-dev karma-coverage
+  - npm install -save--dev coveralls
 
 # Post-install test scripts.
 test_script:
@@ -38,6 +39,7 @@ after_test:
   #- node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
   #- ./node_modules/.bin/istanbul cover --report lcov ./node_modules/.bin/jasmine
   - ./node_modules/.bin/istanbul cover --report lcov ./node_modules/jasmine/bin/jasmine.js
+  - node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info
   
 # Don't actually build.
 build: off
