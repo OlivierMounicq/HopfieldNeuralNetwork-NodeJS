@@ -15,7 +15,6 @@ install:
   - npm install --save-dev jasmine
   - ./node_modules/.bin/jasmine init
   - npm install --save-dev jasmine-xml-reporter
-  #- npm install --save-dev coveralls
   - npm install --save-dev karma
   - npm install --save-dev karma-coverage
   - npm install -save--dev coveralls
@@ -25,20 +24,18 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  # run tests
-  # npm test
-  #- ./node_modules/.bin/jasmine
+  # Run the tests by using Jasmine
   - node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --output=./testresults
-  #- node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport
+  # Sent the results to the AppVeyor API to analyze the test results saved in a XML file
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml))
   - ps: $temp = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./testresults/results.xml)
   - ps: Write-Host "$temp"
 
 after_test:
-  #- node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info 
-  #- ./node_modules/.bin/istanbul cover --report lcov ./node_modules/.bin/jasmine
+  # Run the test coverage : karma + istanbul
   - ./node_modules/.bin/istanbul cover --report lcov ./node_modules/jasmine/bin/jasmine.js
+  # Send the test coverage file (lcov.info) to the coveralls.io site to get a badge
   - node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info
   
 # Don't actually build.
