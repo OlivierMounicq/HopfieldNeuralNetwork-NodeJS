@@ -123,12 +123,12 @@ describe("TestHopfieldFramework",function(){
         var B = [[1, 4],
                  [2, 3],
                  [3, 2],
-				 [4, 1]];
+		 [4, 1]];
 
         var expectedM = [[30, 20],
                          [20, 30]];
 
-        var resultM = MultiplyMatrix(A,B);
+        var resultM = math.MultiplyMatrix(A,B);
 
         expect(resultM).toEqual(expectedM);
 
