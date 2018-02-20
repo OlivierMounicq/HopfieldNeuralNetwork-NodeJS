@@ -114,7 +114,25 @@ describe("TestHopfieldFramework",function(){
 
         expect(resultM).toEqual(expectedM);
 
-    });  
+    });
+    
+    it("Multiply two matrix 2", function(){
+        var A = [[1, 2, 3, 4],
+                 [4, 3, 2, 1]];
+
+        var B = [[1, 4],
+                 [2, 3],
+                 [3, 2],
+				 [4, 1]];
+
+        var expectedM = [[30, 20],
+                         [20, 30]];
+
+        var resultM = MultiplyMatrix(A,B);
+
+        expect(resultM).toEqual(expectedM);
+
+    });	    
 
     // *****************************************************************
     // Generate a matrix by multiplying a column vector by a row vector
