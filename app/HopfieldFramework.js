@@ -94,19 +94,23 @@ exports.AddMatrix = function(A,B){
 //Matrix multiplication: A & B are matrix
 exports.MultiplyMatrix = function(A, B){
   C = [,];
-
-  for(rowIdx = 0; rowIdx <2; rowIdx++){
-    C[rowIdx] = [];
-
-    for(columnIdx = 0; columnIdx < 2; columnIdx++){
-      C[rowIdx][columnIdx] = 0;
-
-      for(k = 0; k< 3; k++){
-        C[rowIdx][columnIdx] = C[rowIdx][columnIdx] + (A[rowIdx][k] * B[k][columnIdx]);
-      }
-    }
-   }
-
+   
+  rowQuantityA = A.length;
+  columnQuantityA = A[0].length;
+   
+  rowQuantityB = B.length;
+  columnQuantityB = B[0].length;   
+   
+  for(idxRowA = 0; idxRowA < rowQuantityA; idxRowA++){
+	  C[idxRowA] = []; 
+	    for(idxColumnB = 0; idxColumnB < columnQuantityB; idxColumnB++){
+		    C[idxRowA][idxColumnB] = 0;
+		
+		    for(k = 0; k < columnQuantityA; k++){				
+		    C[idxRowA][idxColumnB] += A[idxRowA][k] * B[k][idxColumnB];
+      }	
+    }  
+  }
   return C;
 }
 
